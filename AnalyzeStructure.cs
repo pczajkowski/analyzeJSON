@@ -3,6 +3,8 @@ using Newtonsoft.Json.Linq;
 
 namespace analyzeJSON
 {
+    public record AnalysisResult(Dictionary<string, int> Nodes, Dictionary<string, int> Leafs);
+
     public class AnalyzeStructure
     {
         private Dictionary<string, int> nodes = new Dictionary<string, int>();
@@ -40,5 +42,7 @@ namespace analyzeJSON
                     leafs.Add(tokenName, 1);
             }
         }
+
+        public AnalysisResult Result => new AnalysisResult(nodes, leafs);
     }
 }
