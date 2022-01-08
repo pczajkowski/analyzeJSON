@@ -3,12 +3,13 @@ using Newtonsoft.Json.Linq;
 
 namespace analyzeJSON
 {
-    public record AnalysisResult(Dictionary<string, int> Nodes, Dictionary<string, int> Leafs);
+    public record AnalysisResult<T>(T Nodes, T Leafs);
+    public record Token(string Name, JTokenType Type);
 
     public class AnalyzeStructure
     {
-        private Dictionary<string, int> nodes = new Dictionary<string, int>();
-        private Dictionary<string, int> leafs = new Dictionary<string, int>();
+        private Dictionary<Token, int> nodes = new Dictionary<Token, int>();
+        private Dictionary<Token, int> leafs = new Dictionary<Token, int>();
 
         public AnalyzeStructure()
         {
@@ -20,6 +21,7 @@ namespace analyzeJSON
                 return;
 
             var tokenName = AnalyzeJSON.GetNameFromPath(token.Path);
+            var currentToken = new Token(tokenName, token.Type);
 
             if (token.HasValues)
             {
@@ -29,20 +31,20 @@ namespace analyzeJSON
                     return;
                 }
 
-                if (nodes.ContainsKey(tokenName))
-                    nodes[tokenName]++;
+                if (nodes.ContainsKey(currentToken))
+                    nodes[currentToken]++;
                 else
-                    nodes.Add(tokenName, 1);
+                    nodes.Add(currentToken, 1);
             }
             else
             {
-                if (leafs.ContainsKey(tokenName))
-                    leafs[tokenName]++;
+                if (leafs.ContainsKey(currentToken))
+                    leafs[currentToken]++;
                 else
-                    leafs.Add(tokenName, 1);
+                    leafs.Add(currentToken, 1);
             }
         }
 
-        public AnalysisResult Result => new AnalysisResult(nodes, leafs);
+        public AnalysisResult<Dictionary<Token, int>> Result => new(nodes, leafs);
     }
 }
