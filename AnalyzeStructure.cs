@@ -26,10 +26,10 @@ namespace analyzeJSON
             if (token.HasValues)
             {
                 if (token.First.Equals(token.Last) &&
-                    token.First.Type != JTokenType.Array && token.First.Type != JTokenType.Property && token.First.Type != JTokenType.Object)
-                {
+                    token.First.Type != JTokenType.Array &&
+                    token.First.Type != JTokenType.Property &&
+                    token.First.Type != JTokenType.Object)
                     return;
-                }
 
                 if (nodes.ContainsKey(currentToken))
                     nodes[currentToken]++;
