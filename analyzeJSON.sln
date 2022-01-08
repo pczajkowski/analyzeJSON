@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "analyzeJSON", "analyzeJSON.csproj", "{218074DD-F7C9-4B0C-9F84-B824298A9186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "analyzeJSONTests", "analyzeJSONTests\analyzeJSONTests.csproj", "{8A325FAC-621D-4DD1-A9C6-15006C50052F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{218074DD-F7C9-4B0C-9F84-B824298A9186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218074DD-F7C9-4B0C-9F84-B824298A9186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218074DD-F7C9-4B0C-9F84-B824298A9186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218074DD-F7C9-4B0C-9F84-B824298A9186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A325FAC-621D-4DD1-A9C6-15006C50052F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A325FAC-621D-4DD1-A9C6-15006C50052F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A325FAC-621D-4DD1-A9C6-15006C50052F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A325FAC-621D-4DD1-A9C6-15006C50052F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A92FB8DD-A7BC-4506-B638-238D4918B0B6}
+	EndGlobalSection
+EndGlobal
