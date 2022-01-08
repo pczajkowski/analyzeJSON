@@ -18,5 +18,23 @@ namespace analyzeJSON
             var jsonString = sr.ReadToEnd();
             json = JsonConvert.DeserializeObject<JObject>(jsonString);
         }
+
+        private void Traverse(IJEnumerable<JToken> tokens, Action<JToken> action)
+        {
+            foreach (var token in tokens)
+            {
+                action.Invoke(token);
+                if (token.HasValues)
+                    Traverse(token.Children(), action);
+            }
+        }
+
+        public void Traverse(Action<JToken> action)
+        {
+            if (!json.HasValues)
+                return;
+
+            Traverse(json.Children(), action);
+        }
     }
 }
