@@ -14,7 +14,7 @@ namespace analyzeJSON
 
         public void AnalyzeToken(JToken token)
         {
-            if (token.Type == JTokenType.Object)
+            if (token.Type == JTokenType.Object || token.Type == JTokenType.Array)
                 return;
 
             var tokenName = AnalyzeJSON.GetNameFromPath(token.Path);
