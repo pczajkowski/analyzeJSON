@@ -14,6 +14,11 @@ namespace analyzeJSON
 
         public void AnalyzeToken(JToken token)
         {
+            if (token.Type == JTokenType.Object)
+                return;
+
+            var tokenName = AnalyzeJSON.GetNameFromPath(token.Path);
+
             if (token.HasValues)
             {
                 if (token.First.Equals(token.Last) &&
@@ -22,17 +27,17 @@ namespace analyzeJSON
                     return;
                 }
 
-                if (nodes.ContainsKey(token.Path))
-                    nodes[token.Path]++;
+                if (nodes.ContainsKey(tokenName))
+                    nodes[tokenName]++;
                 else
-                    nodes.Add(token.Path, 1);
+                    nodes.Add(tokenName, 1);
             }
             else
             {
-                if (leafs.ContainsKey(token.Path))
-                    leafs[token.Path]++;
+                if (leafs.ContainsKey(tokenName))
+                    leafs[tokenName]++;
                 else
-                    leafs.Add(token.Path, 1);
+                    leafs.Add(tokenName, 1);
             }
         }
     }
