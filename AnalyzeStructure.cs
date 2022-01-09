@@ -4,12 +4,16 @@ using Newtonsoft.Json.Linq;
 namespace analyzeJSON
 {
     public record AnalysisResult<T>(T Nodes, T Leafs);
-    public record Token(string Name, JTokenType Type, bool IsLeaf = false);
+
+    public record Token(string Name, JTokenType Type, bool IsLeaf = false)
+    {
+        public int Count;
+    }
 
     public class AnalyzeStructure
     {
-        private Dictionary<Token, int> nodes = new Dictionary<Token, int>();
-        private Dictionary<Token, int> leafs = new Dictionary<Token, int>();
+        private Dictionary<string, Token> nodes = new Dictionary<string, Token>();
+        private Dictionary<string, Token> leafs = new Dictionary<string, Token>();
 
         public AnalyzeStructure()
         {
@@ -32,24 +36,34 @@ namespace analyzeJSON
                     token.First.Type != JTokenType.Object)
                     return;
 
-                if (nodes.ContainsKey(nodeToken))
-                    nodes[nodeToken]++;
+                if (nodes.ContainsKey(tokenName))
+                    nodes[tokenName].Count++;
                 else
-                    nodes.Add(nodeToken, 1);
+                {
+                    nodeToken.Count++;
+                    nodes.Add(tokenName, nodeToken);
+                }
             }
             else
             {
                 var leafToken = new Token(tokenName, token.Type, true);
 
-                if (leafs.ContainsKey(leafToken))
-                    leafs[leafToken]++;
+                if (leafs.ContainsKey(tokenName))
+                    leafs[tokenName].Count++;
                 else
                 {
-                    leafs.Add(leafToken, 1);
+                    leafToken.Count++;
+                    leafs.Add(tokenName, leafToken);
                 }
             }
         }
 
-        public AnalysisResult<Dictionary<Token, int>> Result => new(nodes, leafs);
+        public AnalysisResult<Dictionary<string, Token>> Result
+        {
+            get
+            {
+                return new(nodes, leafs);
+            }
+        }
     }
 }
