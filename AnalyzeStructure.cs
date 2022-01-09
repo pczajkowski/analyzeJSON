@@ -62,6 +62,12 @@ namespace analyzeJSON
         {
             get
             {
+                foreach (var node in nodes)
+                {
+                    if (leafs.ContainsKey(node.Key))
+                        nodes[node.Key] = node.Value with { IsLeaf = true };
+                }
+
                 return new(nodes, leafs);
             }
         }
