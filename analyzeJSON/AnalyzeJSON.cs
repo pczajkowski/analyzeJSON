@@ -6,6 +6,8 @@ using Newtonsoft.Json.Linq;
 
 namespace analyzeJSON
 {
+    public record Status(bool Success = false, string Message = "");
+
     public class AnalyzeJSON
     {
         private readonly JObject json;
@@ -18,6 +20,14 @@ namespace analyzeJSON
             using StreamReader sr = new StreamReader(path);
             var jsonString = sr.ReadToEnd();
             json = JsonConvert.DeserializeObject<JObject>(jsonString);
+        }
+
+        public AnalyzeJSON(JObject jObject)
+        {
+            if (jObject == null)
+                throw new ArgumentNullException("jObject");
+
+            json = jObject;
         }
 
         public static string GetNameFromPath(string tokenPath)
@@ -38,12 +48,16 @@ namespace analyzeJSON
             }
         }
 
-        public void Traverse(Action<JToken> action)
+        public Status Traverse(Action<JToken> action)
         {
             if (!json.HasValues)
-                return;
+                return new(false, "JSON is empty!");
+
+            if (action == null)
+                return new(false, "Action can't be null!");
 
             Traverse(json.Children(), action);
+            return new(true, string.Empty);
         }
     }
 }

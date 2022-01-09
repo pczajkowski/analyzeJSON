@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using analyzeJSON;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace analyzeJSONTests
@@ -10,9 +11,12 @@ namespace analyzeJSONTests
     public class AnalyzeJSONUnitTests
     {
         [Fact]
-        public void AnalyzeJSON_NullPath()
+        public void AnalyzeJSON_EmptyJObject()
         {
-            Assert.Throws<ArgumentNullException>(() => new AnalyzeJSON(null));
+            var test = new AnalyzeJSON(new JObject());
+            var result = test.Traverse((token) => Console.WriteLine(token));
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Message);
         }
 
         [Fact]
