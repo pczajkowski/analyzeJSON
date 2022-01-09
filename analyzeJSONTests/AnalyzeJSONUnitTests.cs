@@ -11,5 +11,11 @@ namespace analyzeJSONTests
         {
             Assert.Throws<ArgumentNullException>(() => new AnalyzeJSON(null));
         }
+
+        [Fact]
+        public void GetNameFromPath_NullTokenPath()
+        {
+            Assert.Empty(AnalyzeJSON.GetNameFromPath(null));
+        }
     }
 }
