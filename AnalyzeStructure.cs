@@ -15,10 +15,6 @@ namespace analyzeJSON
         private Dictionary<string, Token> nodes = new Dictionary<string, Token>();
         private Dictionary<string, Token> leafs = new Dictionary<string, Token>();
 
-        public AnalyzeStructure()
-        {
-        }
-
         public void AnalyzeToken(JToken token)
         {
             if (token.Type == JTokenType.Object || token.Type == JTokenType.Array)
