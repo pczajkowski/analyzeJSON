@@ -33,6 +33,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\analyzeJSON.csproj" />
+    <ProjectReference Include="..\analyzeJSON\analyzeJSON.csproj" />
   </ItemGroup>
 </Project>
