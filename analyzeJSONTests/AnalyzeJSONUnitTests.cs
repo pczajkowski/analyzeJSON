@@ -32,6 +32,18 @@ namespace analyzeJSONTests
         }
 
         [Fact]
+        public void Traverse_AllGood()
+        {
+            var jObject = new JObject();
+            jObject.Add("test", new JObject());
+            var test = new AnalyzeJSON(jObject);
+
+            var result = test.Traverse((token) => Console.WriteLine(token));
+            Assert.True(result.Success);
+            Assert.Empty(result.Message);
+        }
+
+        [Fact]
         public void GetNameFromPath_NullTokenPath()
         {
             Assert.Empty(AnalyzeJSON.GetNameFromPath(null));
