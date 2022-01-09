@@ -13,7 +13,7 @@ namespace analyzeJSON
         public AnalyzeJSON(string path)
         {
             if (!File.Exists(path))
-                throw new ArgumentNullException("File doesn't exist!");
+                throw new ArgumentNullException("path");
 
             using StreamReader sr = new StreamReader(path);
             var jsonString = sr.ReadToEnd();
