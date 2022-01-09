@@ -11,10 +11,22 @@ namespace analyzeJSONTests
     public class AnalyzeJSONUnitTests
     {
         [Fact]
-        public void AnalyzeJSON_EmptyJObject()
+        public void Traverse_EmptyJObject()
         {
             var test = new AnalyzeJSON(new JObject());
             var result = test.Traverse((token) => Console.WriteLine(token));
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Message);
+        }
+
+        [Fact]
+        public void Traverse_NullAction()
+        {
+            var jObject = new JObject();
+            jObject.Add("test", new JObject());
+            var test = new AnalyzeJSON(jObject);
+
+            var result = test.Traverse(null);
             Assert.False(result.Success);
             Assert.NotEmpty(result.Message);
         }
