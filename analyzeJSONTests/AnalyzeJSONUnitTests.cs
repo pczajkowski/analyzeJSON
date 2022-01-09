@@ -17,5 +17,11 @@ namespace analyzeJSONTests
         {
             Assert.Empty(AnalyzeJSON.GetNameFromPath(null));
         }
+
+        [Fact]
+        public void GetNameFromPath_EmptyTokenPath()
+        {
+            Assert.Empty(AnalyzeJSON.GetNameFromPath(string.Empty));
+        }
     }
 }
