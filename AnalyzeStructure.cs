@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 namespace analyzeJSON
 {
     public record AnalysisResult<T>(T Nodes, T Leafs);
-    public record Token(string Name, JTokenType Type);
+    public record Token(string Name, JTokenType Type, bool IsLeaf = false);
 
     public class AnalyzeStructure
     {
@@ -21,27 +21,32 @@ namespace analyzeJSON
                 return;
 
             var tokenName = AnalyzeJSON.GetNameFromPath(token.Path);
-            var currentToken = new Token(tokenName, token.Type);
 
             if (token.HasValues)
             {
+                var nodeToken = new Token(tokenName, token.Type);
+
                 if (token.First.Equals(token.Last) &&
                     token.First.Type != JTokenType.Array &&
                     token.First.Type != JTokenType.Property &&
                     token.First.Type != JTokenType.Object)
                     return;
 
-                if (nodes.ContainsKey(currentToken))
-                    nodes[currentToken]++;
+                if (nodes.ContainsKey(nodeToken))
+                    nodes[nodeToken]++;
                 else
-                    nodes.Add(currentToken, 1);
+                    nodes.Add(nodeToken, 1);
             }
             else
             {
-                if (leafs.ContainsKey(currentToken))
-                    leafs[currentToken]++;
+                var leafToken = new Token(tokenName, token.Type, true);
+
+                if (leafs.ContainsKey(leafToken))
+                    leafs[leafToken]++;
                 else
-                    leafs.Add(currentToken, 1);
+                {
+                    leafs.Add(leafToken, 1);
+                }
             }
         }
 

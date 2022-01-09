@@ -16,7 +16,7 @@ namespace analyzeJSONTests
 
             var result = analyze.Result;
             Assert.Equal(9, result.Nodes.Count);
-            Assert.Equal(9, result.Leafs.Count);
+            Assert.Equal(10, result.Leafs.Count);
         }
     }
 }

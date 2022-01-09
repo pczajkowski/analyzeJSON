@@ -121,17 +121,20 @@
     {
       "name": "Chest X-Ray",
       "time": "Today",
-      "location": "Main Hospital Radiology"
+      "location": "Main Hospital Radiology",
+      "imaging": "one"
     },
     {
       "name": "Chest X-Ray",
       "time": "Today",
-      "location": "Main Hospital Radiology"
+      "location": "Main Hospital Radiology",
+      "imaging": "two"
     },
     {
       "name": "Chest X-Ray",
       "time": "Today",
-      "location": "Main Hospital Radiology"
+      "location": "Main Hospital Radiology",
+      "imaging": "three"
     }
   ]
 }
