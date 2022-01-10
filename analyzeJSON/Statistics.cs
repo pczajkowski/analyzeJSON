@@ -12,7 +12,7 @@ namespace analyzeJSON
 
         private static int CountWords(string text)
         {
-            var words = text.Split(" ");
+            var words = text.Split(new char[] { ' ', '\t', '\n' });
             return words.Count(x => !string.IsNullOrWhiteSpace(x));
         }
 
