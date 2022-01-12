@@ -5,7 +5,7 @@ namespace analyzeJSON
 {
     public record AnalysisResult<T>(T Nodes, T Leafs);
 
-    public record Token(string Name, JTokenType Type, bool IsLeaf = false)
+    public record Token(string Name, JTokenType Type, bool IsNode = false)
     {
         public int Count;
     }
@@ -24,7 +24,7 @@ namespace analyzeJSON
 
             if (token.HasValues)
             {
-                var nodeToken = new Token(tokenName, token.Type);
+                var nodeToken = new Token(tokenName, token.Type, true);
 
                 if (token.First.Equals(token.Last) &&
                     token.First.Type != JTokenType.Array &&
@@ -42,7 +42,7 @@ namespace analyzeJSON
             }
             else
             {
-                var leafToken = new Token(tokenName, token.Type, true);
+                var leafToken = new Token(tokenName, token.Type);
 
                 if (leafs.ContainsKey(tokenName))
                     leafs[tokenName].Count++;
@@ -58,10 +58,10 @@ namespace analyzeJSON
         {
             get
             {
-                foreach (var node in nodes)
+                foreach (var leaf in leafs)
                 {
-                    if (leafs.ContainsKey(node.Key))
-                        nodes[node.Key] = node.Value with { IsLeaf = true };
+                    if (nodes.ContainsKey(leaf.Key))
+                        leafs[leaf.Key] = leaf.Value with { IsNode = true };
                 }
 
                 return new(nodes, leafs);
