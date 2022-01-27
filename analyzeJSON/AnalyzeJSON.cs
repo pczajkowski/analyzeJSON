@@ -24,10 +24,7 @@ namespace analyzeJSON
 
         public AnalyzeJSON(JObject jObject)
         {
-            if (jObject == null)
-                throw new ArgumentNullException("jObject");
-
-            json = jObject;
+            json = jObject ?? throw new ArgumentNullException("jObject");
         }
 
         public static string GetNameFromPath(string tokenPath)
