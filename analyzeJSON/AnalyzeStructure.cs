@@ -12,8 +12,8 @@ namespace analyzeJSON
 
     public class AnalyzeStructure
     {
-        private Dictionary<string, Token> nodes = new Dictionary<string, Token>();
-        private Dictionary<string, Token> leafs = new Dictionary<string, Token>();
+        private readonly Dictionary<string, Token> nodes = new();
+        private readonly Dictionary<string, Token> leafs = new();
 
         public void AnalyzeToken(JToken token)
         {

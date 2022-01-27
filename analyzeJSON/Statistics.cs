@@ -7,7 +7,7 @@ namespace analyzeJSON
     public record WordCountResult<T>(T NodeCounts, int TotalWordCount);
     public class Statistics
     {
-        private readonly Dictionary<string, int> nodeCounts = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> nodeCounts = new();
         private int totalWordCount;
 
         private static int CountWords(string text)

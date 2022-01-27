@@ -15,16 +15,16 @@ namespace analyzeJSON
         public AnalyzeJSON(string path)
         {
             if (!File.Exists(path))
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
 
-            using StreamReader sr = new StreamReader(path);
+            using var sr = new StreamReader(path);
             var jsonString = sr.ReadToEnd();
             json = JsonConvert.DeserializeObject<JObject>(jsonString);
         }
 
         public AnalyzeJSON(JObject jObject)
         {
-            json = jObject ?? throw new ArgumentNullException("jObject");
+            json = jObject ?? throw new ArgumentNullException(nameof(jObject));
         }
 
         public static string GetNameFromPath(string tokenPath)
