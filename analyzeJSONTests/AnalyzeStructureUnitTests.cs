@@ -21,8 +21,8 @@ namespace analyzeJSONTests
             analyze.AnalyzeToken(node);
 
             var result = analyze.Result;
-            Assert.Single(result.Nodes);
-            Assert.Single(result.Leafs);
+            _ = Assert.Single(result.Nodes);
+            _ = Assert.Single(result.Leafs);
         }
     }
 }

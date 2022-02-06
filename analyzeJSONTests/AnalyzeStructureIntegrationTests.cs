@@ -12,7 +12,9 @@ namespace analyzeJSONTests
         {
             var test = new AnalyzeJSON(testFile);
             var analyze = new AnalyzeStructure();
-            test.Traverse((token) => analyze.AnalyzeToken(token));
+            var status = test.Traverse((token) => analyze.AnalyzeToken(token));
+            Assert.True(status.Success);
+            Assert.Empty(status.Message);
 
             var result = analyze.Result;
             Assert.Equal(9, result.Nodes.Count);

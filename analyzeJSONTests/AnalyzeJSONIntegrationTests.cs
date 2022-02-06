@@ -10,7 +10,7 @@ namespace analyzeJSONTests
         [Fact]
         public void AnalyzeJSON_AllGood()
         {
-            var test = new AnalyzeJSON(testFile);
+            _ = new AnalyzeJSON(testFile);
         }
     }
 }

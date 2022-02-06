@@ -29,10 +29,7 @@ namespace analyzeJSON
 
         public static string GetNameFromPath(string tokenPath)
         {
-            if (string.IsNullOrWhiteSpace(tokenPath))
-                return string.Empty;
-
-            return tokenPath.Split(".").Last();
+            return string.IsNullOrWhiteSpace(tokenPath) ? string.Empty : tokenPath.Split(".").Last();
         }
 
         private void Traverse(IJEnumerable<JToken> tokens, Action<JToken> action)

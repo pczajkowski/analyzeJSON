@@ -22,8 +22,10 @@ namespace analyzeJSONTests
         [Fact]
         public void Traverse_NullAction()
         {
-            var jObject = new JObject();
-            jObject.Add("test", new JObject());
+            var jObject = new JObject
+            {
+                { "test", new JObject() }
+            };
             var test = new AnalyzeJSON(jObject);
 
             var result = test.Traverse(null);
@@ -34,8 +36,10 @@ namespace analyzeJSONTests
         [Fact]
         public void Traverse_AllGood()
         {
-            var jObject = new JObject();
-            jObject.Add("test", new JObject());
+            var jObject = new JObject
+            {
+                { "test", new JObject() }
+            };
             var test = new AnalyzeJSON(jObject);
 
             var result = test.Traverse((token) => Console.WriteLine(token));
