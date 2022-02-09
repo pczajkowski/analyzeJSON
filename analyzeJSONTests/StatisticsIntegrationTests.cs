@@ -16,8 +16,8 @@ namespace analyzeJSONTests
             var status = test.Traverse((token) => stats.RunStatistics(token));
             Assert.True(status.Success);
             Assert.Empty(status.Message);
-            Assert.Equal(10, stats.Result.NodeCounts.Count);
-            Assert.Equal(165, stats.Result.TotalWordCount);
+            Assert.Equal(11, stats.Result.NodeCounts.Count);
+            Assert.Equal(168, stats.Result.TotalWordCount);
         }
     }
 }

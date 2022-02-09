@@ -55,6 +55,7 @@
       "refills": "Refill 3"
     }
   },
+  "items": [ "one", "two", "three" ],
   "labs": [
     {
       "name": "Arterial Blood Gas",
