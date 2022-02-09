@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -29,7 +30,11 @@ namespace analyzeJSON
 
         public static string GetNameFromPath(string tokenPath)
         {
-            return string.IsNullOrWhiteSpace(tokenPath) ? string.Empty : tokenPath.Split(".").Last();
+            if (string.IsNullOrWhiteSpace(tokenPath))
+                return string.Empty;
+
+            var name = tokenPath.Split(".").LastOrDefault();
+            return Regex.Replace(name, @"\[\d+?\]$", "");
         }
 
         private void Traverse(IJEnumerable<JToken> tokens, Action<JToken> action)

@@ -68,6 +68,7 @@ namespace analyzeJSONTests
                 new TestCase("abc.def", "def"),
                 new TestCase("abc.", string.Empty),
                 new TestCase("abc.def.", string.Empty),
+                new TestCase("abc.def.ghi[0]", "ghi"),
 
             };
 
