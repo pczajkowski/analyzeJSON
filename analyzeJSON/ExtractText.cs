@@ -7,7 +7,6 @@ namespace analyzeJSON
     public class ExtractText
     {
         private readonly Dictionary<string, bool> keysToExtract;
-        private readonly Dictionary<string, List<string>> extracted = new();
 
         public ExtractText(Dictionary<string, bool> keys)
         {
@@ -26,12 +25,12 @@ namespace analyzeJSON
             if (!keysToExtract.ContainsKey(tokenName))
                 return;
 
-            if (!extracted.ContainsKey(tokenName))
-                extracted.Add(tokenName, new List<string>());
+            if (!Result.ContainsKey(tokenName))
+                Result.Add(tokenName, new List<string>());
 
-            extracted[tokenName].Add(token.Value<string>());
+            Result[tokenName].Add(token.Value<string>());
         }
 
-        public Dictionary<string, List<string>> Result => extracted;
+        public Dictionary<string, List<string>> Result { get; } = new();
     }
 }

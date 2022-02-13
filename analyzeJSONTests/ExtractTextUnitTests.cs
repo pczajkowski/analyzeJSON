@@ -11,7 +11,7 @@ namespace analyzeJSONTests
         [Fact]
         public void ExtractText_NullKeys()
         {
-            Assert.Throws<ArgumentNullException>(() => new ExtractText(null));
+            _ = Assert.Throws<ArgumentNullException>(() => new ExtractText(null));
         }
 
         [Fact]
