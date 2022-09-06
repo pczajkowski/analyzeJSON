@@ -42,11 +42,11 @@ namespace analyzeJSON
         {
             foreach (var token in tokens)
             {
-							foreach (var action in actions)
-                action.Invoke(token);
-              
-							if (token.HasValues)
-          			TraverseWithActions(token.Children(), actions);
+                foreach (var action in actions)
+                    action.Invoke(token);
+
+                if (token.HasValues)
+                    TraverseWithActions(token.Children(), actions);
             }
         }
 
@@ -58,7 +58,7 @@ namespace analyzeJSON
             if (action == null)
                 return new(false, "Action can't be null!");
 
-            TraverseWithActions(json.Children(), new List<Action<JToken>>{action});
+            TraverseWithActions(json.Children(), new List<Action<JToken>> { action });
             return new(true, string.Empty);
         }
     }
