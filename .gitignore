@@ -213,3 +213,8 @@ ModelManifest.xml
 
 #Rider
 .idea
+
+#replit
+.cache
+.replit
+replit.nix
