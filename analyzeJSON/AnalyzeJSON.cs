@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -37,13 +38,15 @@ namespace analyzeJSON
             return Regex.Replace(name, @"\[\d+?\]$", "");
         }
 
-        private void Traverse(IJEnumerable<JToken> tokens, Action<JToken> action)
+        private void TraverseWithActions(IJEnumerable<JToken> tokens, List<Action<JToken>> actions)
         {
             foreach (var token in tokens)
             {
+							foreach (var action in actions)
                 action.Invoke(token);
-                if (token.HasValues)
-                    Traverse(token.Children(), action);
+              
+							if (token.HasValues)
+          			TraverseWithActions(token.Children(), actions);
             }
         }
 
@@ -55,7 +58,7 @@ namespace analyzeJSON
             if (action == null)
                 return new(false, "Action can't be null!");
 
-            Traverse(json.Children(), action);
+            TraverseWithActions(json.Children(), new List<Action<JToken>>{action});
             return new(true, string.Empty);
         }
     }
