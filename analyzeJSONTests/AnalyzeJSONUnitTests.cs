@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using analyzeJSON;
 using Newtonsoft.Json.Linq;
@@ -28,7 +28,7 @@ namespace analyzeJSONTests
             };
             var test = new AnalyzeJSON(jObject);
 
-            var result = test.Traverse(null);
+            var result = test.Traverse(action: null);
             Assert.False(result.Success);
             Assert.NotEmpty(result.Message);
         }
@@ -74,6 +74,43 @@ namespace analyzeJSONTests
 
             foreach (var testCase in testCases)
                 Assert.Equal(testCase.ExpectedOutput, AnalyzeJSON.GetNameFromPath(testCase.Input));
+        }
+
+			[Fact]
+        public void Traverse_EmptyJObject_WithActions()
+        {
+            var test = new AnalyzeJSON(new JObject());
+            var result = test.Traverse(new List<Action<JToken>>{ (token) => Console.WriteLine(token) });
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Message);
+        }
+
+        [Fact]
+        public void Traverse_NullActions()
+        {
+            var jObject = new JObject
+            {
+                { "test", new JObject() }
+            };
+            var test = new AnalyzeJSON(jObject);
+
+            var result = test.Traverse(actions: null);
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Message);
+        }
+
+				[Fact]
+        public void Traverse_EmptyActions()
+        {
+            var jObject = new JObject
+            {
+                { "test", new JObject() }
+            };
+            var test = new AnalyzeJSON(jObject);
+
+            var result = test.Traverse(new List<Action<JToken>>());
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Message);
         }
     }
 }

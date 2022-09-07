@@ -56,9 +56,21 @@ namespace analyzeJSON
                 return new(false, "JSON is empty!");
 
             if (action == null)
-                return new(false, "Action can't be null!");
+                return new(false, $"{nameof(action)} can't be null!");
 
             TraverseWithActions(json.Children(), new List<Action<JToken>>{action});
+            return new(true, string.Empty);
+        }
+
+			public Status Traverse(List<Action<JToken>> actions)
+        {
+            if (!json.HasValues)
+                return new(false, "JSON is empty!");
+
+            if (actions == null || actions.Count == 0)
+                return new(false, $"{nameof(actions)} can't be null!");
+
+            TraverseWithActions(json.Children(), actions);
             return new(true, string.Empty);
         }
     }
