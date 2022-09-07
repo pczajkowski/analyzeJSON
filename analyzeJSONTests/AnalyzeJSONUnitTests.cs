@@ -76,7 +76,7 @@ namespace analyzeJSONTests
                 Assert.Equal(testCase.ExpectedOutput, AnalyzeJSON.GetNameFromPath(testCase.Input));
         }
 
-			[Fact]
+				[Fact]
         public void Traverse_EmptyJObject_WithActions()
         {
             var test = new AnalyzeJSON(new JObject());
