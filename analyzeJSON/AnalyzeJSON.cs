@@ -62,7 +62,7 @@ namespace analyzeJSON
             return new(true, string.Empty);
         }
 
-			public Status Traverse(List<Action<JToken>> actions)
+        public Status Traverse(List<Action<JToken>> actions)
         {
             if (!json.HasValues)
                 return new(false, "JSON is empty!");

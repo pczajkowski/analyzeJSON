@@ -76,11 +76,11 @@ namespace analyzeJSONTests
                 Assert.Equal(testCase.ExpectedOutput, AnalyzeJSON.GetNameFromPath(testCase.Input));
         }
 
-				[Fact]
+        [Fact]
         public void Traverse_EmptyJObject_WithActions()
         {
             var test = new AnalyzeJSON(new JObject());
-            var result = test.Traverse(new List<Action<JToken>>{ (token) => Console.WriteLine(token) });
+            var result = test.Traverse(new List<Action<JToken>> { (token) => Console.WriteLine(token) });
             Assert.False(result.Success);
             Assert.NotEmpty(result.Message);
         }
@@ -99,7 +99,7 @@ namespace analyzeJSONTests
             Assert.NotEmpty(result.Message);
         }
 
-				[Fact]
+        [Fact]
         public void Traverse_EmptyActions()
         {
             var jObject = new JObject
